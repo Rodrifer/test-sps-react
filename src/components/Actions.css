@@ -1,0 +1,34 @@
+.actions-container {
+    display: flex;
+    flex: 1;
+    /* que ocupe todo el ancho de su contenedor */
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.action-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none; /* Eliminar subrayado del enlace */
+    font-size: 16px;
+}
+
+.add-user-button {
+    background-color: #007bff; /* Color del botón de añadir usuario */
+}
+
+.add-user-button:hover {
+    background-color: #0056b3; /* Color al pasar el ratón */
+}
+
+.logout-button {
+    background-color: #dc3545; /* Color del botón de cerrar sesión */
+}
+
+.logout-button:hover {
+    background-color: #c82333; /* Color al pasar el ratón */
+}
