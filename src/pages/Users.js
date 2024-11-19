@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import UserService from "../services/UserService";
 import { useNavigate } from "react-router-dom";
 import "./Users.css";
+import Actions from "../components/Actions";
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -43,9 +44,7 @@ function Users() {
     <div className="users-container">
       <h1> Users</h1>
 
-      <div>
-        <button onClick={() => navigate("/users/add")}>Add User</button>
-      </div>
+      <Actions />
 
       <div className="users-list">
         {users.length === 0 && <p>No Users</p>}
@@ -69,9 +68,12 @@ function Users() {
                 <div>{user.name}</div>
                 <div>{user.email}</div>
                 <div className="user-actions">
-                  <button onClick={() => navigate(`/users/${user.id}`)}>Edit</button>
+                  <button className="action-user-button edit-user-button" onClick={() => navigate(`/users/${user.id}`)}>
+                    Edit
+                  </button>
                   {user.type !== "admin" && (
-                    <button
+                    <button 
+                      className="action-user-button delete-user-button"
                       onClick={() => {
                         if (
                           window.confirm(

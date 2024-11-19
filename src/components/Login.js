@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import AuthService from "../services/AuthService";
 import "./Login.css";
-
-const API_URL = "https://test-sps-server.vercel.app/api";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const authService = new AuthService();
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -17,25 +18,14 @@ function Login() {
     setLoading(true);
     setError(null);
 
-    const payload = {
-      email: email,
-      password: password,
-    };
-
     try {
-      const response = await axios.post(`${API_URL}/auth/login`, payload, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await authService.login(email, password);
+      console.log(response);
 
       if (response.status === 200) {
-        const { token } = response.data;
-        localStorage.setItem("token", token);
         navigate("/users");
-
-        //window.location.href = "/users"; // Redirect to users page
       }
+
     } catch (err) {
       console.error("Error at login:", err);
       setError("Error at login. Please check your credentials.");
