@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import "./Users.css";
 
 function Users() {
-
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -12,29 +11,40 @@ function Users() {
 
   const userService = new UserService();
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-        try {
-            const usersList = await userService.list();
-            setUsers(usersList);
-        } catch (err) {
-            setError("Error when fetching users: " + err);
-        } finally {
-            setLoading(false);
-        }
-    };
-    fetchUsers();
-}, []);
+  const fetchUsers = async () => {
+    try {
+      const usersList = await userService.list();
+      setUsers(usersList);
+    } catch (err) {
+      setError("Error when fetching users: " + err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>{error}</p>;
+  const handleDelete = async (id) => {
+    try {
+      await userService.delete(id);
+      const updatedUsers = users.filter((user) => user.id !== id);
+      setUsers(updatedUsers);
+    } catch (err) {
+      setError("Error when deleting user: " + err);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className="users-container">
       <h1> Users</h1>
 
       <div>
-        <button onClick={() => navigate('/users/add')}>Add User</button>
+        <button onClick={() => navigate("/users/add")}>Add User</button>
       </div>
 
       <div className="users-list">
@@ -50,29 +60,38 @@ function Users() {
           </div>
         )}
 
-        {users.length > 0 && users.map((user, index) => (
-          <div key={user.id} className="user-card">
-            <div className="user-info">
-              <div>{index + 1}</div>
-              <div>{user.type}</div>
-              <div>{user.name}</div>
-              <div>{user.email}</div>
-              <div className="user-actions">
-              <button>Edit</button>
-              {user.type !== "admin" && (
-                <button onClick={() => {
-                  if (window.confirm("Are you sure you want to delete this user: " + user.name + "?"))
-                  userService.delete(user.id)}}>Delete</button>  
-              )}
+        {users.length > 0 &&
+          users.map((user, index) => (
+            <div key={user.id} className="user-card">
+              <div className="user-info">
+                <div>{index + 1}</div>
+                <div>{user.type}</div>
+                <div>{user.name}</div>
+                <div>{user.email}</div>
+                <div className="user-actions">
+                  <button onClick={() => navigate(`/users/${user.id}`)}>Edit</button>
+                  {user.type !== "admin" && (
+                    <button
+                      onClick={() => {
+                        if (
+                          window.confirm(
+                            "Are you sure you want to delete this user: " +
+                              user.name +
+                              "?"
+                          )
+                        ) {
+                          handleDelete(user.id);
+                        }
+                      }}
+                    >
+                      Delete
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
-            </div>
-           
-          </div>
-        ))
-        }
-        
+          ))}
       </div>
-
     </div>
   );
 }

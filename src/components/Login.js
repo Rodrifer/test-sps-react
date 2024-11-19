@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import './Login.css';
+import "./Login.css";
 
 const API_URL = "https://test-sps-server.vercel.app/api";
 
@@ -25,10 +25,10 @@ function Login() {
     try {
       const response = await axios.post(`${API_URL}/auth/login`, payload, {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
-    
+
       if (response.status === 200) {
         const { token } = response.data;
         localStorage.setItem("token", token);
@@ -76,4 +76,4 @@ function Login() {
   );
 }
 
-export default Login; 
+export default Login;
