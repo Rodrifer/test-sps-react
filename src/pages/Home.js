@@ -1,12 +1,14 @@
 import React from "react";
 import Login from "../components/Login";
+import "./Home.css";
 
 function Home() {
   return (
-    <div>
+    <div className="home-container">
       <h1>SPS REACT TEST</h1>
 
-      <a href="/users">Usuários</a>
+      <p>Author: Rodrigo Soliz</p>
+
       <Login />
     </div>
   );
