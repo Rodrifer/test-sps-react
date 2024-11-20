@@ -18,7 +18,7 @@ Se cumplieron con las siguientes implementaciones:
 - Boton de Logout
 - Consumo de API creada anteriormente (test-sps-server)
 
-La app se subio a Vercel: https://sps-react-test.vercel.app
+La app se subio a Vercel: https://test-sps-react.vercel.app
 
 ----------------------------------
 PORTUGUÊS
@@ -40,6 +40,6 @@ Foi cumprida as seguintes implementações:
 - Botão de Logout
 - Consumo de API criada anteriormente (test-sps-server)
 
-A app foi subida para Vercel: https://sps-react-test.vercel.app
+A app foi subida para Vercel: https://test-sps-react.vercel.app
 
 
