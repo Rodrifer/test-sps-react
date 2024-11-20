@@ -1,10 +1,9 @@
 import axios from "axios";
-
-const API_URL = "https://test-sps-server.vercel.app/api";
+import config from "../config.json";
 
 class UserService {
   async list() {
-    const users = await axios.get(`${API_URL}/users`, {
+    const users = await axios.get(`${config.API_URL}/users`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -22,7 +21,7 @@ class UserService {
   }
 
   async get(id) {
-    const user = await axios.get(`${API_URL}/users/${id}`, {
+    const user = await axios.get(`${config.API_URL}/users/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -38,7 +37,7 @@ class UserService {
   }
   async create(type, name, email, password) {
     const response = await axios.post(
-      `${API_URL}/users`,
+      `${config.API_URL}/users`,
       {
         type,
         name,
@@ -62,12 +61,12 @@ class UserService {
   }
 
   async delete(id) {
-    const response = await axios.delete(`${API_URL}/users/${id}`, {
+    const response = await axios.delete(`${config.API_URL}/users/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
       },
-    })
+    });
     if (response.status === 401 || response.status === 403) {
       localStorage.removeItem("token");
       window.location.href = "/";
@@ -78,12 +77,12 @@ class UserService {
   }
 
   async update(id, data) {
-    const response = await axios.put(`${API_URL}/users/${id}`, data, {
+    const response = await axios.put(`${config.API_URL}/users/${id}`, data, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
       },
-    })
+    });
     if (response.status === 401 || response.status === 403) {
       localStorage.removeItem("token");
       window.location.href = "/";

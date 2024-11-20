@@ -68,11 +68,14 @@ function Users() {
                 <div>{user.name}</div>
                 <div>{user.email}</div>
                 <div className="user-actions">
-                  <button className="action-user-button edit-user-button" onClick={() => navigate(`/users/${user.id}`)}>
+                  <button
+                    className="action-user-button edit-user-button"
+                    onClick={() => navigate(`/users/${user.id}`)}
+                  >
                     Edit
                   </button>
                   {user.type !== "admin" && (
-                    <button 
+                    <button
                       className="action-user-button delete-user-button"
                       onClick={() => {
                         if (

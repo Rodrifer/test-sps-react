@@ -25,7 +25,6 @@ function Login() {
       if (response.status === 200) {
         navigate("/users");
       }
-
     } catch (err) {
       console.error("Error at login:", err);
       setError("Error at login. Please check your credentials.");

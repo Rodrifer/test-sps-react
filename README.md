@@ -17,6 +17,7 @@ Se cumplieron con las siguientes implementaciones:
 - Eliminacion de Usuario
 - Boton de Logout
 - Consumo de API creada anteriormente (test-sps-server)
+- Rutas protegidas
 
 La app se subio a Vercel: https://test-sps-react.vercel.app
 
@@ -39,6 +40,7 @@ Foi cumprida as seguintes implementações:
 - Exclusão de Usuário
 - Botão de Logout
 - Consumo de API criada anteriormente (test-sps-server)
+- Rotas Protegidas
 
 A app foi subida para Vercel: https://test-sps-react.vercel.app
 
