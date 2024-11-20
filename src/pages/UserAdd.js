@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./UserAdd.css";
 
 function AddUser() {
-  const [type, setType] = useState("");
+  const [type, setType] = useState("user");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -49,14 +49,16 @@ function AddUser() {
       <form onSubmit={handleSubmit} className="add-user-form">
         <div className="form-group">
           <label htmlFor="type">Type:</label>
-          <input
+          <select
             id="type"
-            type="text"
             value={type}
             onChange={(e) => setType(e.target.value)}
             required
             className="form-input"
-          />
+          >
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
         </div>
         <div className="form-group">
           <label htmlFor="name">Name:</label>

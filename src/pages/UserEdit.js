@@ -100,9 +100,19 @@ function EditUser() {
         </div>
 
         {error && <p className="error-message">{error}</p>}
-        <button type="submit" className="form-button" disabled={loading}>
-          {loading ? "Loading..." : "Update User"}
-        </button>
+
+        <div className="form-buttons">
+          <button
+            type="button"
+            className="cancel-button"
+            onClick={() => (window.location.href = "/users")}
+          >
+            Cancel
+          </button>
+          <button type="submit" className="form-button" disabled={loading}>
+            {loading ? "Loading..." : "Update User"}
+          </button>
+        </div>
       </form>
     </div>
   );
